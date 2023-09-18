@@ -1,0 +1,91 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <ctime>
+#include <cmath>
+
+using namespace std;
+
+// Function to perform linear search
+int linearSearch(string arr[], int n, string x) 
+{ 
+    for (int i = 0; i < n; i++) 
+        if (arr[i] == x) 
+            return i; 
+    return -1; 
+} 
+
+// Function to perform binary search
+int binarySearch(string arr[], int n, string x) 
+{ 
+    int left = 0, right = n - 1; 
+    while (left <= right) { 
+        int mid = left + (right - left) / 2; 
+  
+        if (arr[mid] == x) 
+            return mid; 
+  
+        if (arr[mid] < x) 
+            left = mid + 1; 
+  
+        else
+            right = mid - 1; 
+    } 
+    return -1; 
+} 
+
+// Function to perform jump search
+int jumpSearch(string arr[], int n, string x) 
+{ 
+    int step = sqrt(n); 
+    int prev = 0; 
+    while (arr[min(step, n) - 1] < x) { 
+        prev = step; 
+        step += sqrt(n); 
+        if (prev >= n) 
+            return -1; 
+    } 
+  
+    while (arr[prev] < x) { 
+        prev++; 
+        if (prev == min(step, n)) 
+            return -1; 
+    } 
+  
+    if (arr[prev] == x) 
+        return prev; 
+  
+    return -1; 
+} 
+
+int main()
+{
+    string a,b,c,d;
+    int i,j, comparisons;
+    string x[250000];
+    srand (time(0));
+
+    cout << "How many number to place in the array? ";
+    cin >> j;
+
+    // loop to fill each desired array position  //need to add code
+    // Generate numbers between 65 and 90  //need to add code
+    // convert them to char tyoe and concatenate  //need to add code
+
+    for (i = 0; i < j; i++)
+    {
+        a = static_cast<char>(65+rand()%26);
+        b = static_cast<char>(65+rand()%26);
+        c = static_cast<char>(65+rand()%26);
+        d = static_cast<char>(65+rand()%26);
+        cout << a << ' ' << b << " " << c << " " << d << endl;
+        x[i] = a + b + c + d; //concantenate into string //move up?
+    }
+
+    //print out array unsorted //print command required
+    cout << "Unsorted array: " << endl;
+    for (i = 0; i < j; i++)
+    {
+        cout << "String " << i << " is " << x[i] << endl;
+    }
+return 0;
+}
